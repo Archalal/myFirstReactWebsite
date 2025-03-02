@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { getUserSingleProducts } from '../../Services/AllAPI';
+import { getUserSingleProducts,delCartProducts,getPersonDataCart } from '../../Services/AllAPI';
+import Header from '../../Pages/Header';
 
 const Cart = () => {
   
   const [cart, setCart] = useState([]);
+  const[error,setError]=useState(true)
+ 
 
  
   useEffect(() => {
@@ -19,6 +22,8 @@ const Cart = () => {
     
       const response = await getUserSingleProducts(userId);
       const userData = response.data;
+      console.log("ok",userData);
+      
 
      
       const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -34,6 +39,7 @@ const Cart = () => {
 
      
       setCart(cartWithQuantity);
+      setError(false)
     
       localStorage.setItem('cart', JSON.stringify(cartWithQuantity));
     } catch (error) {
@@ -69,60 +75,95 @@ const Cart = () => {
     return total.toFixed(2);
   };
 
+  const buyNow=async()=>{
+   alert("you ordered is placed")
+   const userId = sessionStorage.getItem("roleId"); 
+   const UserDetailsSingle=await getPersonDataCart(userId)
+  let userDetails=UserDetailsSingle.data.userDetails
+  let id=UserDetailsSingle.data.id
+   
+   const apiResponse=await delCartProducts(userId,{id,userDetails,userCart:[]});
+   console.log(apiResponse);
+   fetchCart()
+
+   
+   
+   
+   
+   
+   
+    
+  
+  }
+
   return (
+  
     <div>
+      <Header />
       <div className="container mt-5">
         <h2 className="mb-4">Shopping Cart</h2>
-        <div className="list-group">
+        {
+          cart.length==0?
+          <div>
+            <span className='text-danger fs-2'>Cart is empty! Add Products</span>
+          </div>
+          :
+          <div>
+                    <div className="list-group">
        
-          {cart.map((product, index) => (
-            <div className="list-group-item mb-3" key={index}>
-              <div className="d-flex justify-content-between align-items-center">
-             
-                <div>
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="img-thumbnail"
-                    style={{ width: "100px", height: "100px" }}
-                  />
-                </div>
+       {cart.map((product, index) => (
+         <div className="list-group-item mb-3" key={index}>
+           <div className="d-flex justify-content-between align-items-center">
+          
+             <div>
+               <img
+                 src={product.image}
+                 alt={product.name}
+                 className="img-thumbnail"
+                 style={{ width: "100px", height: "100px" }}
+               />
+             </div>
 
-               
-                <div>
-                  <h5>{product.name}</h5>
-                  <p>${product.price}</p>
-                </div>
+            
+             <div>
+               <h5>{product.name}</h5>
+               <p><i className="fa-solid fa-indian-rupee-sign"></i>{product.price}</p>
+             </div>
 
-              
-                <div className="d-flex align-items-center">
-                  <button
-                    className="btn btn-outline-secondary btn-sm"
-                    onClick={() => decreaseQuantity(index)}
-                  >
-                    -
-                  </button>
-                  <span className="mx-3">{product.quantity}</span>
-                  <button
-                    className="btn btn-outline-secondary btn-sm"
-                    onClick={() => increaseQuantity(index)}
-                  >
-                    +
-                  </button>
-                </div>
+           
+             <div className="d-flex align-items-center">
+               <button
+                 className="btn btn-outline-secondary btn-sm"
+                 onClick={() => decreaseQuantity(index)}
+               >
+                 -
+               </button>
+               <span className="mx-3">{product.quantity}</span>
+               <button
+                 className="btn btn-outline-secondary btn-sm"
+                 onClick={() => increaseQuantity(index)}
+               >
+                 +
+               </button>
+             </div>
 
-              <div>
-                  <p>${(product.price * product.quantity).toFixed(2)}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+           <div>
+               <p><i className="fa-solid fa-indian-rupee-sign"></i>{(product.price * product.quantity).toFixed(2)}</p>
+             </div>
+           </div>
+         </div>
+       ))}
+     </div>
+   
+    
+    
+     <div className="text-end mt-4">
+       <h4>Total: <i className="fa-solid fa-indian-rupee-sign"></i>{calculateCartTotal()}</h4>
+       <button onClick={buyNow}>Buy now</button>
+     </div>
 
-       
-        <div className="text-end mt-4">
-          <h4>Total: ${calculateCartTotal()}</h4>
-        </div>
+          </div>
+        }
       </div>
     </div>
   );

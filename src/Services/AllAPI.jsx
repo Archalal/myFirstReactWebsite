@@ -34,3 +34,12 @@ export const getUserSingleProducts = async (id) => {
   export const getCartProduct = async (id) => {
     return await commonAPI("get", `/persondata/${id}`, "");
   };
+  export const getPersonDataCart=async(id)=>{
+    return await commonAPI("get",`/persondata/${id}`,"")
+}
+  export const delCartProducts=async(id,requestedBody)=>{
+    return await commonAPI("put",`/persondata/${id}`,requestedBody)
+  }
+  export const deleteSingleProd=async(id)=>{
+    return await commonAPI("delete",`/products/${id}`,{})
+  }

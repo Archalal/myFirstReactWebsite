@@ -18,22 +18,24 @@ const HeaderForRole = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="me-auto fs-5">
               <Nav.Link as={Link} to="/">
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to="/product">
-                Admin
-              </Nav.Link>
+            
               <Nav.Link as={Link} to="/about">
                 About
               </Nav.Link>
               <Nav.Link as={Link} to="/contact">
                 Contact
               </Nav.Link>
+            </Nav>
 
-              <Nav.Link as={Link} to="/" className="me-auto">
-                Logout
+         
+            <Nav className="fs-5">
+              <Nav.Link as={Link} to="/" className="ms-auto">
+              <i className="fa-solid fa-power-off"></i>
+               <span className="ms-1">Logout</span>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

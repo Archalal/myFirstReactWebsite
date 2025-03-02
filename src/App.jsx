@@ -9,6 +9,9 @@ import ProductView from './Components/User/ProductView'
 import EachProductView from './Components/Admin/EachProductView'
 import UserEachProduct from './Components/User/UserEachProduct'
 import Cart from './Components/User/Cart'
+import Footer from './Pages/Footer'
+import About from './Pages/About'
+import ContactUs from './Pages/ContactUs'
 // import HeaderForRole from './Pages/HeaderForRole'
 
 function App() {
@@ -27,9 +30,11 @@ function App() {
         <Route element={<EachProductView />} path='/:id/eachproductview'></Route>
         <Route element={<UserEachProduct />} path='/:id/usereachproduct'></Route>
         <Route element={<Cart />} path='/:id/cart'></Route>
+        <Route element={<About />} path='/about'></Route>
+        <Route element={<ContactUs />} path='/contact'></Route>
 
       </Routes>
-
+      <Footer/>
     
     
     </>
