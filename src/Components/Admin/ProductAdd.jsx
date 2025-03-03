@@ -59,9 +59,10 @@ const ProductAdd = () => {
     navigate(`/${id}/eachproductview`);
   };
   const delSingleProduct=(id)=>{
-
+    displayProductsAll()
     deleteSingleProd(id)
     displayProductsAll()
+  
   }
 
   return (

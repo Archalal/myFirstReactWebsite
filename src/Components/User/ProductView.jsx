@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { userProductView } from '../../Services/AllAPI';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import HeaderForRole from '../../Pages/HeaderForRole';
 import { useNavigate } from 'react-router-dom';
+import HeaderForUser from './HeaderForUser';
 
 const ProductView = () => {
   const [productV, setProductV] = useState([]);
+  const [searchvalue, setSearchvalue] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,22 +23,36 @@ const ProductView = () => {
     }
   };
 
+  const handleSearch = (event) => {
+    event.preventDefault();
+    // No need to do anything here since the search is handled by filtering the products.
+  };
+
   const userEachProductViews = (id) => {
     sessionStorage.setItem("IdItem", id);
     navigate(`/${id}/usereachproduct`);
   };
 
+  // Filter products based on search value
+  const filteredProducts = productV.filter((product) =>
+    product.name.toLowerCase().includes(searchvalue.toLowerCase())
+  );
+
   return (
     <div>
-      <HeaderForRole />
+      <HeaderForUser
+        searchvalue={searchvalue}
+        setSearchvalue={setSearchvalue}
+        handleSearch={handleSearch}
+      />
       <div className="container mt-4">
         <div className="row g-4">
-          {productV.map((product, index) => (
+          {filteredProducts.map((product, index) => (
             <div key={index} className="col-md-4 col-lg-3">
               <Card className="h-100 shadow-sm">
                 <Card.Img
                   variant="top"
-                  src={product.image } 
+                  src={product.image}
                   style={{ height: "400px", objectFit: "cover" }}
                 />
                 <Card.Body className="d-flex flex-column">
@@ -47,9 +62,10 @@ const ProductView = () => {
                     <Button
                       variant="light"
                       onClick={() => userEachProductViews(product.id)}
-                      className="btn btn-outline-primary"
+                      className="btn btn-outline-dark"
                     >
-                      View
+                      <i className="fa-solid fa-eye"></i>
+                      <span className="ms-1">View</span>
                     </Button>
                   </div>
                 </Card.Body>

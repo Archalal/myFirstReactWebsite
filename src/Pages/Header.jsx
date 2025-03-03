@@ -17,7 +17,7 @@ const Header = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto fs-5">
+          <Nav className="me-auto " style={{fontSize:"16px"}}>
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
@@ -29,7 +29,7 @@ const Header = () => {
               Contact
             </Nav.Link>
           </Nav>
-          <Nav className="fs-5">
+          <Nav style={{fontSize:"16px"}}>
               <Nav.Link as={Link} to="/login" className="ms-auto">
               <i className="fa-solid fa-user"></i>
             <span className="ms-2">Login</span>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { getUserSingleProducts,delCartProducts,getPersonDataCart } from '../../Services/AllAPI';
-import Header from '../../Pages/Header';
+import HeaderForUser from './HeaderForUser';
 
 const Cart = () => {
   
   const [cart, setCart] = useState([]);
-  const[error,setError]=useState(true)
+  // const[error,setError]=useState(true)
  
 
  
@@ -31,15 +31,18 @@ const Cart = () => {
     
       const cartWithQuantity = userData.userCart.map((product) => {
         const savedProduct = savedCart.find((item) => item.id === product.id);
+        console.log("poyi poyi",savedProduct);
+        
         return {
           ...product,
           quantity: savedProduct ? savedProduct.quantity : 1, 
         };
       });
 
+    //  console.log("hoii",cartWithQuantity);
      
       setCart(cartWithQuantity);
-      setError(false)
+      // setError(false)
     
       localStorage.setItem('cart', JSON.stringify(cartWithQuantity));
     } catch (error) {
@@ -99,7 +102,7 @@ const Cart = () => {
   return (
   
     <div>
-      <Header />
+     <HeaderForUser />
       <div className="container mt-5">
         <h2 className="mb-4">Shopping Cart</h2>
         {

@@ -85,7 +85,7 @@ const ContactUs = () => {
               </div>
 
            
-              <div className="d-flex gap-3">
+              <div className="d-flex gap-3 " style={{fontSize:"10px"}}>
                 <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                   <i className="fab fa-facebook fa-2x text-primary"></i>
                 </a>

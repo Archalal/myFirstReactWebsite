@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getSingleProduct, getUserSingleProducts, updateUserCart } from "../../Services/AllAPI";
 import { useNavigate } from "react-router-dom";
-import HeaderForRole from "../../Pages/HeaderForRole";
+// import HeaderForRole from "../../Pages/HeaderForRole";
+import HeaderForUser from "./HeaderForUser";
 
 const UserEachProduct = () => {
   const [UProducts, setUProducts] = useState({});
@@ -40,11 +41,17 @@ const UserEachProduct = () => {
       console.error("Error adding product to cart:", error);
     }
   };
+  const buynow=()=>{
+    alert("Your order has been placed ")
+    navigate('/productView')
+
+  }
+
 
   return (
    <div>
-    <HeaderForRole/>
-     <div className="container my-5">
+    <HeaderForUser/>
+     <div className="container my-2">
       <div className="row gx-4 gx-lg-5 align-items-center">
         
         <div className="col-md-6">
@@ -56,10 +63,11 @@ const UserEachProduct = () => {
           />
         </div>
 
+     
        
         <div className="col-md-6">
-          <div className="small mb-2 text-muted">SKU: BST-498</div>
-          <h1 className="display-4 fw-bold">{UProducts.name}</h1>
+        
+          <h1 className=" fs-3 fw-bold">{UProducts.name}</h1>
           <div className="fs-3 mb-4">
             <span className="text-decoration-line-through me-2"><i className="fa-solid fa-indian-rupee-sign"></i>45.00</span>
             <span className="text-danger"><i className="fa-solid fa-indian-rupee-sign"></i>{UProducts.price}</span>
@@ -76,6 +84,15 @@ const UserEachProduct = () => {
               <i className="bi-cart-fill me-1"></i>
               Add to Cart
             </button>
+            <button
+              className="btn btn-outline-dark btn-lg flex-shrink-0"
+              onClick={buynow}
+            
+            >
+              <i className="bi-cart-fill me-1"></i>
+                Buy Now
+            </button>
+          
           </div>
         </div>
       </div>

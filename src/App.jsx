@@ -12,6 +12,7 @@ import Cart from './Components/User/Cart'
 import Footer from './Pages/Footer'
 import About from './Pages/About'
 import ContactUs from './Pages/ContactUs'
+import HeaderForUser from './Components/User/HeaderForUser'
 // import HeaderForRole from './Pages/HeaderForRole'
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route element={<Cart />} path='/:id/cart'></Route>
         <Route element={<About />} path='/about'></Route>
         <Route element={<ContactUs />} path='/contact'></Route>
+        <Route element={<HeaderForUser />} path='/headerforuser'></Route>
 
       </Routes>
       <Footer/>
