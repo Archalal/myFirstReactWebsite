@@ -43,3 +43,6 @@ export const getUserSingleProducts = async (id) => {
   export const deleteSingleProd=async(id)=>{
     return await commonAPI("delete",`/products/${id}`,{})
   }
+  export const removeProductCart=async(id)=>{
+    return await commonAPI("delete",`/persondata/${id}`,{})
+  }

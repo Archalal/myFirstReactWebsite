@@ -25,7 +25,7 @@ const ProductView = () => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    // No need to do anything here since the search is handled by filtering the products.
+    
   };
 
   const userEachProductViews = (id) => {
@@ -33,7 +33,7 @@ const ProductView = () => {
     navigate(`/${id}/usereachproduct`);
   };
 
-  // Filter products based on search value
+ 
   const filteredProducts = productV.filter((product) =>
     product.name.toLowerCase().includes(searchvalue.toLowerCase())
   );

@@ -35,7 +35,7 @@ const HeaderForUser = ({ searchvalue, setSearchvalue, handleSearch }) => {
                             </Nav.Link>
                         </Nav>
 
-                        {/* Search Bar */}
+                       
                         <Form className="d-flex" onSubmit={handleSearch}>
                             <FormControl
                                 onChange={(e) => setSearchvalue(e.target.value)}
@@ -46,7 +46,7 @@ const HeaderForUser = ({ searchvalue, setSearchvalue, handleSearch }) => {
                                 name="search"
                                 value={searchvalue}
                             />
-                            <Button variant="outline-success" type="submit">
+                            <Button variant="outline-dark" type="submit">
                                 Search
                             </Button>
                         </Form>

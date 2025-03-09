@@ -40,7 +40,7 @@ const EachProductView = () => {
           />
         </div>
         <div className="col-md-6">
-          <div className="small mb-2 text-muted">SKU: BST-498</div>
+          <div className="small mb-2 text-muted"></div>
           <h1 className="display-4 fw-bold">{getSingleProd.name}</h1>
           <div className="fs-3 mb-4">
             <span className="text-decoration-line-through me-2"><i className="fa-solid fa-indian-rupee-sign"></i>45.00</span>

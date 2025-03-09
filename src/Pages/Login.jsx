@@ -69,9 +69,9 @@ const Login = () => {
     }
   return (
    <div>
-    <div>
+    {/* <div>
       <Header />
-    </div>
+    </div> */}
      <div
       style={{
         display: 'flex',

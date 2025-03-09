@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getUserSingleProducts,delCartProducts,getPersonDataCart } from '../../Services/AllAPI';
+import { getUserSingleProducts,delCartProducts,getPersonDataCart, removeProductCart } from '../../Services/AllAPI';
 import HeaderForUser from './HeaderForUser';
+
 
 const Cart = () => {
   
@@ -31,7 +32,7 @@ const Cart = () => {
     
       const cartWithQuantity = userData.userCart.map((product) => {
         const savedProduct = savedCart.find((item) => item.id === product.id);
-        console.log("poyi poyi",savedProduct);
+        // console.log("poyi poyi",savedProduct);
         
         return {
           ...product,
@@ -98,7 +99,11 @@ const Cart = () => {
     
   
   }
+  const removeProduct=async(id)=>{
+    
+    removeProductCart(id)
 
+  }
   return (
   
     <div>
@@ -152,6 +157,7 @@ const Cart = () => {
 
            <div>
                <p><i className="fa-solid fa-indian-rupee-sign"></i>{(product.price * product.quantity).toFixed(2)}</p>
+             <button className='variant:outline-danger rounded p-1' onClick={()=>removeProduct(product.id)}>Remove</button>
              </div>
            </div>
          </div>
